@@ -203,11 +203,11 @@ where:
 
 ### Area-Weighted Surface Properties
 
-$$\bar{\alpha} = \sum_{i=1}^{n} f_i \alpha_i$$
+$\bar{\alpha} = \sum_{i=1}^{n} f_i \alpha_i$
 
-$$\bar{\varepsilon} = \sum_{i=1}^{n} f_i \varepsilon_i$$
+$\bar{\varepsilon} = \sum_{i=1}^{n} f_i \varepsilon_i$
 
-$$\bar{q}_{latent} = \sum_{i=1}^{n} f_i q_{latent,i}$$
+$\bar{q}_{latent} = \sum_{i=1}^{n} f_i q_{latent,i}$
 
 where $f_i$ = fraction of surface type $i$, $\sum f_i = 1$.
 
@@ -241,15 +241,15 @@ graph LR
 ### Model Training Objective
 
 **Loss Function (Mean Squared Error):**
-$$\mathcal{L} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$$
+$\mathcal{L} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$
 
 **Regularized Loss (for Neural Network):**
-$$\mathcal{L}_{reg} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2 + \lambda \sum_{j} w_j^2$$
+$\mathcal{L}_{reg} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2 + \lambda \sum_{j} w_j^2$
 
 ### Uncertainty Quantification
 
 **Bootstrap Confidence Intervals:**
-$$CI_{95\%} = [\hat{y} - 1.96\sigma_{\hat{y}}, \hat{y} + 1.96\sigma_{\hat{y}}]$$
+$CI_{95\%} = [\hat{y} - 1.96\sigma_{\hat{y}}, \hat{y} + 1.96\sigma_{\hat{y}}]$
 
 where $\sigma_{\hat{y}}$ is the bootstrap standard deviation.
 
@@ -301,13 +301,13 @@ $$CV_{score} = \frac{1}{k} \sum_{i=1}^{k} \mathcal{L}(y_{test,i}, \hat{y}_{test,
 ### Performance Metrics
 
 **Mean Absolute Error:**
-$$MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$$
+$MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$
 
 **Coefficient of Determination:**
-$$R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$$
+$R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$
 
 **Root Mean Square Error:**
-$$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$
+$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$
 
 ### Model Validation Results
 
@@ -322,9 +322,9 @@ $$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$$
 **Validation Comparison:**
 - **ML Model Prediction:** $\Delta T = 2.317$ °C
 - **UWG Physics Model:** $\Delta T = 2.321$ °C
-- **Percent Error:** $\epsilon = 0.1723$ %
+- **Percent Error:** $\epsilon = 0.1723\%$
 
-$$\epsilon = \frac{|T_{ML} - T_{UWG}|}{T_{UWG}} \times 100\% = \frac{|2.317 - 2.321|}{2.321} \times 100\% = 0.1723\%$$
+$\epsilon = \frac{|T_{ML} - T_{UWG}|}{T_{UWG}} \times 100\% = \frac{|2.317 - 2.321|}{2.321} \times 100\% = 0.1723\%$
 
 ---
 
@@ -406,13 +406,13 @@ $$\frac{\partial \Delta T_{UHI}}{\partial u} = -\frac{q_{net}^{''}}{\rho_{air} c
 
 ### Environmental Constants
 
-$$\rho_{air} = 1.15 \text{ kg/m³}$$
-$$c_p = 1005 \text{ J/kg·K}$$
-$$h = 1.0 \text{ m}$$
-$$u = 0.1 \text{ m/s}$$
-$$L^{\downarrow} = 400 \text{ W/m²}$$
-$$L_v = 2.45 \times 10^6 \text{ J/kg}$$
-$$\sigma = 5.67 \times 10^{-8} \text{ W/m²·K⁴}$$
+$\rho_{air} = 1.15 \text{ kg/m}^3$
+$c_p = 1005 \text{ J/kg·K}$
+$h = 1.0 \text{ m}$
+$u = 0.1 \text{ m/s}$
+$L^{\downarrow} = 400 \text{ W/m}^2$
+$L_v = 2.45 \times 10^6 \text{ J/kg}$
+$\sigma = 5.67 \times 10^{-8} \text{ W/m}^2\text{·K}^4$
 
 ---
 
