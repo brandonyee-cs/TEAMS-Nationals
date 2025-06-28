@@ -5,29 +5,25 @@
       36.1269567,
       -86.7112723
     ],
-    "solar_ghi_avg": {
-      "annual": 4.25,
-      "monthly": {
-        "jan": 2.19,
-        "feb": 2.92,
-        "mar": 4.02,
-        "apr": 5.11,
-        "may": 5.83,
-        "jun": 6.33,
-        "jul": 5.9,
-        "aug": 5.7,
-        "sep": 4.7,
-        "oct": 3.59,
-        "nov": 2.59,
-        "dec": 1.97
-      }
+    "solar_data_summary": {
+      "total_summer_days": 92,
+      "target_year": 2022,
+      "actual_data_year": 2022,
+      "overall_summer_avg_ghi": 245.8138586956522,
+      "monthly_averages": {
+        "june": 307.525,
+        "july": 212.84274193548387,
+        "august": 219.06451612903226
+      },
+      "data_type": "summer_2022"
     },
     "greenery_score": 0,
-    "current_temperature": 30.57,
-    "current_humidity": 69,
+    "current_temperature": 29.99,
+    "current_humidity": 61,
     "tree_count": 0,
     "forest_areas": 0,
-    "data_collection_timestamp": "20250628_112653",
-    "collection_timestamp": "20250628_112653"
+    "data_collection_timestamp": "20250628_134330",
+    "data_type": "summer_2022_focused",
+    "collection_timestamp": "20250628_134330"
   }
 ]

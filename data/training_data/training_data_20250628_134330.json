@@ -1,0 +1,26 @@
+{
+  "address": "1090 Murfreesboro Pike Nashville",
+  "coordinates": [
+    36.1269567,
+    -86.7112723
+  ],
+  "solar_data_summary": {
+    "total_summer_days": 92,
+    "target_year": 2022,
+    "actual_data_year": 2022,
+    "overall_summer_avg_ghi": 245.8138586956522,
+    "monthly_averages": {
+      "june": 307.525,
+      "july": 212.84274193548387,
+      "august": 219.06451612903226
+    },
+    "data_type": "summer_2022"
+  },
+  "greenery_score": 0,
+  "current_temperature": 29.99,
+  "current_humidity": 61,
+  "tree_count": 0,
+  "forest_areas": 0,
+  "data_collection_timestamp": "20250628_134330",
+  "data_type": "summer_2022_focused"
+}

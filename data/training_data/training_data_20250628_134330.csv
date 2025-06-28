@@ -1,0 +1,2 @@
+address,coordinates_lat,coordinates_lon,solar_data_summary,greenery_score,current_temperature,current_humidity,tree_count,forest_areas,data_collection_timestamp,data_type
+1090 Murfreesboro Pike Nashville,36.1269567,-86.7112723,{'total_summer_days': 92, 'target_year': 2022, 'actual_data_year': 2022, 'overall_summer_avg_ghi': 245.8138586956522, 'monthly_averages': {'june': 307.525, 'july': 212.84274193548387, 'august': 219.06451612903226}, 'data_type': 'summer_2022'},0,29.99,61,0,0,20250628_134330,summer_2022_focused

@@ -1,2 +1,0 @@
-address,coordinates_lat,coordinates_lon,solar_ghi_avg,greenery_score,current_temperature,current_humidity,tree_count,forest_areas,data_collection_timestamp
-1090 Murfreesboro Pike Nashville,36.1269567,-86.7112723,{'annual': 4.25, 'monthly': {'jan': 2.19, 'feb': 2.92, 'mar': 4.02, 'apr': 5.11, 'may': 5.83, 'jun': 6.33, 'jul': 5.9, 'aug': 5.7, 'sep': 4.7, 'oct': 3.59, 'nov': 2.59, 'dec': 1.97}},0,30.57,69,0,0,20250628_112653
