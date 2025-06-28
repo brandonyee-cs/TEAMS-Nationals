@@ -1,0 +1,13 @@
+2022 SUMMER SOLAR - QUICK STATISTICS SUMMARY
+==================================================
+Location: 1090 Murfreesboro Pike Nashville
+Year: 2022 (Summer Only)
+Days Analyzed: 92
+Average GHI: 245.81 kWh/m²/day
+Std Deviation: 117.79
+Range: 18.92 - 454.17
+
+Monthly Averages:
+  June: 307.52 kWh/m²/day
+  July: 212.84 kWh/m²/day
+  August: 219.06 kWh/m²/day
