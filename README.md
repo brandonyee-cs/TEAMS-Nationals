@@ -13,6 +13,8 @@
 - [Machine Learning Mathematical Framework](#machine-learning-mathematical-framework)
 - [Optimization and Scaling](#optimization-and-scaling)
 - [Validation Methodology](#validation-methodology)
+- [Monthly Projection Mathematics](#monthly-projection-mathematics)
+- [Mathematical Model Implementation](#mathematical-model-implementation)
 
 ---
 
@@ -22,7 +24,7 @@
 
 The net surface heat flux forms the foundation of TUHI (Temperature Urban Heat Island) modeling:
 
-$$q_{net}^{''} = (1-\alpha)G + L^{\downarrow} - \varepsilon\sigma T_s^4 - h_c(T_s - T_a) - L_v E + q_{anthro}^{''} + q_c^{''}$$
+**q_net = (1-α)G + L↓ - εσT_s⁴ - h_c(T_s - T_a) - L_v E + q_anthro + q_c**
 
 where each term represents a distinct physical process contributing to urban surface energy balance.
 
@@ -56,15 +58,15 @@ graph TD
 
 ### 1. Solar Absorption Term
 
-$$q_{solar}^{''} = (1-\alpha)G$$
+**q_solar = (1-α)G**
 
 **Parameters:**
-- $\alpha$ = surface albedo (dimensionless, range: 0-1)
-- $G$ = incoming solar radiation (W/m²)
+- α = surface albedo (dimensionless, range: 0-1)
+- G = incoming solar radiation (W/m²)
 
 **Material-Specific Albedo Values:**
-| Material | Albedo ($\alpha$) | Solar Absorption |
-|----------|------------------|------------------|
+| Material | Albedo (α) | Solar Absorption |
+|----------|------------|------------------|
 | Hot Mix Asphalt | 0.085 | 91.5% |
 | White TPO Membrane | 0.725 | 27.5% |
 | Vegetation | 0.215 | 78.5% |
@@ -72,67 +74,67 @@ $$q_{solar}^{''} = (1-\alpha)G$$
 
 ### 2. Longwave Radiation Balance
 
-$$q_{rad}^{''} = L^{\downarrow} - L^{\uparrow}$$
+**q_rad = L↓ - L↑**
 
-$$L^{\uparrow} = \varepsilon\sigma T_s^4$$
+**L↑ = εσT_s⁴**
 
 **Complete Form:**
-$$q_{rad}^{''} = L^{\downarrow} - \varepsilon\sigma T_s^4$$
+**q_rad = L↓ - εσT_s⁴**
 
 **Parameters:**
-- $L^{\downarrow}$ = incoming atmospheric longwave radiation (W/m²)
-- $\varepsilon$ = surface emissivity (dimensionless, range: 0.85-0.98)
-- $\sigma$ = Stefan-Boltzmann constant ($5.67 \times 10^{-8}$ W/m²·K⁴)
-- $T_s$ = surface temperature (K)
+- L↓ = incoming atmospheric longwave radiation (W/m²)
+- ε = surface emissivity (dimensionless, range: 0.85-0.98)
+- σ = Stefan-Boltzmann constant (5.67 × 10⁻⁸ W/m²·K⁴)
+- T_s = surface temperature (K)
 
 ### 3. Convective Heat Transfer
 
-$$q_{conv}^{''} = h_c(T_s - T_a)$$
+**q_conv = h_c(T_s - T_a)**
 
 **Parameters:**
-- $h_c$ = convective heat transfer coefficient (W/m²·K)
-- $T_s$ = surface temperature (K)
-- $T_a$ = air temperature (K)
+- h_c = convective heat transfer coefficient (W/m²·K)
+- T_s = surface temperature (K)
+- T_a = air temperature (K)
 
 **Enhanced Convection Model:**
-$$h_c = f(u, \Delta T, z_0)$$
+**h_c = f(u, ΔT, z₀)**
 
-where $u$ = wind speed, $\Delta T$ = temperature difference, $z_0$ = surface roughness.
+where u = wind speed, ΔT = temperature difference, z₀ = surface roughness.
 
 ### 4. Latent Heat Flux (Evaporation)
 
-$$q_{latent}^{''} = L_v \times E$$
+**q_latent = L_v × E**
 
 **Evaporation Rate:**
-$$E = C_E \times u \times (\rho_{v,s} - \rho_{v,a})$$
+**E = C_E × u × (ρ_v,s - ρ_v,a)**
 
 **Complete Latent Heat Model:**
-$$q_{latent}^{''} = L_v \times C_E \times u \times (\rho_{v,s} - \rho_{v,a})$$
+**q_latent = L_v × C_E × u × (ρ_v,s - ρ_v,a)**
 
 **Parameters:**
-- $L_v$ = latent heat of vaporization ($2.45 \times 10^6$ J/kg)
-- $C_E$ = mass transfer coefficient (dimensionless)
-- $u$ = wind speed (m/s)
-- $\rho_{v,s}$ = vapor density at surface (kg/m³)
-- $\rho_{v,a}$ = vapor density in air (kg/m³)
+- L_v = latent heat of vaporization (2.45 × 10⁶ J/kg)
+- C_E = mass transfer coefficient (dimensionless)
+- u = wind speed (m/s)
+- ρ_v,s = vapor density at surface (kg/m³)
+- ρ_v,a = vapor density in air (kg/m³)
 
 ### 5. Anthropogenic Heat Flux
 
-$$q_{anthro}^{''} = \frac{Q_{anthro}}{A \times t}$$
+**q_anthro = Q_anthro / (A × t)**
 
 **Parameters:**
-- $Q_{anthro}$ = total anthropogenic heat released (J)
-- $A$ = surface area (m²)
-- $t$ = time period (s)
+- Q_anthro = total anthropogenic heat released (J)
+- A = surface area (m²)
+- t = time period (s)
 
 ### 6. Conductive Heat Transfer
 
-$$q_c^{''} = -k \times \frac{T_{low} - T_s}{d}$$
+**q_c = -k × (T_low - T_s) / d**
 
 **Parameters:**
-- $k$ = thermal conductivity (W/m·K)
-- $T_{low}$ = subsurface temperature (K)
-- $d$ = depth of conductive layer (m)
+- k = thermal conductivity (W/m·K)
+- T_low = subsurface temperature (K)
+- d = depth of conductive layer (m)
 
 ---
 
@@ -140,16 +142,16 @@ $$q_c^{''} = -k \times \frac{T_{low} - T_s}{d}$$
 
 ### Primary UHI Intensity Formula
 
-$$\Delta T_{UHI} = \frac{q_{net}^{''}}{\rho_{air} \times c_p \times h \times u}$$
+**ΔT_UHI = q_net / (ρ_air × c_p × h × u)**
 
 **Expanded Form:**
-$$\Delta T_{UHI} = \frac{(1-\alpha)G + L^{\downarrow} - \varepsilon\sigma T_s^4 - h_c(T_s - T_a) - L_v E + q_{anthro}^{''} + q_c^{''}}{\rho_{air} \times c_p \times h \times u}$$
+**ΔT_UHI = [(1-α)G + L↓ - εσT_s⁴ - h_c(T_s - T_a) - L_v E + q_anthro + q_c] / (ρ_air × c_p × h × u)**
 
 **Environmental Parameters:**
-- $\rho_{air}$ = air density (1.15 kg/m³)
-- $c_p$ = specific heat capacity of air (1005 J/kg·K)
-- $h$ = urban boundary layer height (m)
-- $u$ = wind speed (m/s)
+- ρ_air = air density (1.15 kg/m³)
+- c_p = specific heat capacity of air (1005 J/kg·K)
+- h = urban boundary layer height (m)
+- u = wind speed (m/s)
 
 ### UHI Calculation Process
 
@@ -190,31 +192,31 @@ flowchart TD
 ### Feature Engineering
 
 **Input Feature Vector:**
-$$\mathbf{X} = [G, T_a, u, RH, \bar{\alpha}, \bar{\varepsilon}, \bar{q}_{latent}]^T$$
+**X = [G, T_a, u, RH, ᾱ, ε̄, q̄_latent]ᵀ**
 
 where:
-- $G$ = solar input (W/m²)
-- $T_a$ = air temperature (°C)
-- $u$ = wind speed (m/s)
-- $RH$ = relative humidity (%)
-- $\bar{\alpha}$ = area-weighted albedo
-- $\bar{\varepsilon}$ = area-weighted emissivity
-- $\bar{q}_{latent}$ = area-weighted latent heat flux
+- G = solar input (W/m²)
+- T_a = air temperature (°C)
+- u = wind speed (m/s)
+- RH = relative humidity (%)
+- ᾱ = area-weighted albedo
+- ε̄ = area-weighted emissivity
+- q̄_latent = area-weighted latent heat flux
 
 ### Area-Weighted Surface Properties
 
-$\bar{\alpha} = \sum_{i=1}^{n} f_i \alpha_i$
+**ᾱ = Σ(i=1 to n) f_i α_i**
 
-$\bar{\varepsilon} = \sum_{i=1}^{n} f_i \varepsilon_i$
+**ε̄ = Σ(i=1 to n) f_i ε_i**
 
-$\bar{q}_{latent} = \sum_{i=1}^{n} f_i q_{latent,i}$
+**q̄_latent = Σ(i=1 to n) f_i q_latent,i**
 
-where $f_i$ = fraction of surface type $i$, $\sum f_i = 1$.
+where f_i = fraction of surface type i, Σf_i = 1.
 
 ### Target Variables
 
 **Prediction Targets:**
-$$\mathbf{Y} = [q_{net}^{''}, \Delta T_{UHI}]^T$$
+**Y = [q_net, ΔT_UHI]ᵀ**
 
 ### Ensemble Model Architecture
 
@@ -241,17 +243,17 @@ graph LR
 ### Model Training Objective
 
 **Loss Function (Mean Squared Error):**
-$\mathcal{L} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2$
+**L = (1/m) Σ(i=1 to m) (y_i - ŷ_i)²**
 
 **Regularized Loss (for Neural Network):**
-$\mathcal{L}_{reg} = \frac{1}{m} \sum_{i=1}^{m} (y_i - \hat{y}_i)^2 + \lambda \sum_{j} w_j^2$
+**L_reg = (1/m) Σ(i=1 to m) (y_i - ŷ_i)² + λ Σw_j²**
 
 ### Uncertainty Quantification
 
 **Bootstrap Confidence Intervals:**
-$CI_{95\%} = [\hat{y} - 1.96\sigma_{\hat{y}}, \hat{y} + 1.96\sigma_{\hat{y}}]$
+**CI_95% = [ŷ - 1.96σ_ŷ, ŷ + 1.96σ_ŷ]**
 
-where $\sigma_{\hat{y}}$ is the bootstrap standard deviation.
+where σ_ŷ is the bootstrap standard deviation.
 
 ---
 
@@ -260,16 +262,16 @@ where $\sigma_{\hat{y}}$ is the bootstrap standard deviation.
 ### Physics-ML Alignment
 
 **Scaling Factor Calculation:**
-$$s = \frac{\Delta T_{target}}{\Delta T_{ML,raw}}$$
+**s = ΔT_target / ΔT_ML,raw**
 
 **Scaled Prediction:**
-$$\Delta T_{UHI,scaled} = s \times \Delta T_{ML,raw}$$
+**ΔT_UHI,scaled = s × ΔT_ML,raw**
 
 ### Target UHI Values (Thompson Residential Pocket)
 
-- **Current Infrastructure:** $\Delta T_{UHI} = 4.4$ °C
-- **Proposed Eco-Infrastructure:** $\Delta T_{UHI} = 2.05$ °C
-- **Temperature Reduction:** $\Delta T_{reduction} = 2.35$ °C
+- **Current Infrastructure:** ΔT_UHI = 4.4 °C
+- **Proposed Eco-Infrastructure:** ΔT_UHI = 2.05 °C
+- **Temperature Reduction:** ΔT_reduction = 2.35 °C
 
 ### Optimization Process
 
@@ -296,23 +298,23 @@ graph TD
 ### Cross-Validation Framework
 
 **K-Fold Cross-Validation:**
-$$CV_{score} = \frac{1}{k} \sum_{i=1}^{k} \mathcal{L}(y_{test,i}, \hat{y}_{test,i})$$
+**CV_score = (1/k) Σ(i=1 to k) L(y_test,i, ŷ_test,i)**
 
 ### Performance Metrics
 
 **Mean Absolute Error:**
-$MAE = \frac{1}{n} \sum_{i=1}^{n} |y_i - \hat{y}_i|$
+**MAE = (1/n) Σ(i=1 to n) |y_i - ŷ_i|**
 
 **Coefficient of Determination:**
-$R^2 = 1 - \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{\sum_{i=1}^{n} (y_i - \bar{y})^2}$
+**R² = 1 - [Σ(i=1 to n) (y_i - ŷ_i)²] / [Σ(i=1 to n) (y_i - ȳ)²]**
 
 **Root Mean Square Error:**
-$RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$
+**RMSE = √[(1/n) Σ(i=1 to n) (y_i - ŷ_i)²]**
 
 ### Model Validation Results
 
-| Model | $R^2$ Score | MAE (°C) | RMSE (°C) |
-|-------|-------------|----------|-----------|
+| Model | R² Score | MAE (°C) | RMSE (°C) |
+|-------|----------|----------|-----------|
 | Random Forest | 0.951 | 0.087 | 0.112 |
 | Gradient Boosting | 0.973 | 0.076 | 0.094 |
 | Neural Network | 0.944 | 0.095 | 0.118 |
@@ -320,11 +322,11 @@ $RMSE = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (y_i - \hat{y}_i)^2}$
 ### Physics-ML Agreement
 
 **Validation Comparison:**
-- **ML Model Prediction:** $\Delta T = 2.317$ °C
-- **UWG Physics Model:** $\Delta T = 2.321$ °C
-- **Percent Error:** $\epsilon = 0.1723\%$
+- **ML Model Prediction:** ΔT = 2.317 °C
+- **UWG Physics Model:** ΔT = 2.321 °C
+- **Percent Error:** ε = 0.1723%
 
-$\epsilon = \frac{|T_{ML} - T_{UWG}|}{T_{UWG}} \times 100\% = \frac{|2.317 - 2.321|}{2.321} \times 100\% = 0.1723\%$
+**ε = |T_ML - T_UWG| / T_UWG × 100% = |2.317 - 2.321| / 2.321 × 100% = 0.1723%**
 
 ---
 
@@ -333,9 +335,9 @@ $\epsilon = \frac{|T_{ML} - T_{UWG}|}{T_{UWG}} \times 100\% = \frac{|2.317 - 2.3
 ### Solar Input Scaling
 
 **Monthly GHI Conversion:**
-$$G_{peak} = \frac{GHI_{monthly} \times 1000 \times 8}{24}$$
+**G_peak = (GHI_monthly × 1000 × 8) / 24**
 
-where $GHI_{monthly}$ is in kWh/m²/day.
+where GHI_monthly is in kWh/m²/day.
 
 ### Nashville Summer Data
 
@@ -348,10 +350,10 @@ where $GHI_{monthly}$ is in kWh/m²/day.
 ### Statistical Summary
 
 **Average Temperature Reduction:**
-$$\overline{\Delta T} = \frac{1}{n} \sum_{i=1}^{n} (T_{current,i} - T_{proposed,i}) = 2.35 \text{ °C}$$
+**ΔT̄ = (1/n) Σ(i=1 to n) (T_current,i - T_proposed,i) = 2.35 °C**
 
 **Standard Deviation:**
-$$\sigma_{\Delta T} = \sqrt{\frac{1}{n-1} \sum_{i=1}^{n} (\Delta T_i - \overline{\Delta T})^2} = 0.01 \text{ °C}$$
+**σ_ΔT = √[(1/(n-1)) Σ(i=1 to n) (ΔT_i - ΔT̄)²] = 0.01 °C**
 
 ---
 
@@ -385,18 +387,18 @@ flowchart TD
 ### Parameter Sensitivity Analysis
 
 **Albedo Sensitivity:**
-$$\frac{\partial \Delta T_{UHI}}{\partial \alpha} = -\frac{G}{\rho_{air} c_p h u}$$
+**∂ΔT_UHI/∂α = -G / (ρ_air c_p h u)**
 
 **Emissivity Sensitivity:**
-$$\frac{\partial \Delta T_{UHI}}{\partial \varepsilon} = -\frac{\sigma T_s^4}{\rho_{air} c_p h u}$$
+**∂ΔT_UHI/∂ε = -σT_s⁴ / (ρ_air c_p h u)**
 
 **Wind Speed Sensitivity:**
-$$\frac{\partial \Delta T_{UHI}}{\partial u} = -\frac{q_{net}^{''}}{\rho_{air} c_p h u^2}$$
+**∂ΔT_UHI/∂u = -q_net / (ρ_air c_p h u²)**
 
 ### Material Property Database
 
-| Material | $\alpha$ | $\varepsilon$ | $k$ (W/m·K) | $q_{latent}$ (W/m²) |
-|----------|----------|---------------|-------------|---------------------|
+| Material | α | ε | k (W/m·K) | q_latent (W/m²) |
+|----------|---|----|-----------|-----------------|
 | Hot Mix Asphalt | 0.085 | 0.95 | 0.875 | 0 |
 | Portland Cement Concrete | 0.30 | 0.90 | 1.6 | 0 |
 | Black EPDM Membrane | 0.08 | 0.90 | 0.23 | 0 |
@@ -406,13 +408,13 @@ $$\frac{\partial \Delta T_{UHI}}{\partial u} = -\frac{q_{net}^{''}}{\rho_{air} c
 
 ### Environmental Constants
 
-$\rho_{air} = 1.15 \text{ kg/m}^3$
-$c_p = 1005 \text{ J/kg·K}$
-$h = 1.0 \text{ m}$
-$u = 0.1 \text{ m/s}$
-$L^{\downarrow} = 400 \text{ W/m}^2$
-$L_v = 2.45 \times 10^6 \text{ J/kg}$
-$\sigma = 5.67 \times 10^{-8} \text{ W/m}^2\text{·K}^4$
+- ρ_air = 1.15 kg/m³
+- c_p = 1005 J/kg·K
+- h = 1.0 m
+- u = 0.1 m/s
+- L↓ = 400 W/m²
+- L_v = 2.45 × 10⁶ J/kg
+- σ = 5.67 × 10⁻⁸ W/m²·K⁴
 
 ---
 
